@@ -1,4 +1,7 @@
-*{ overflow: hidden; }
+body {
+	overflow: hidden;
+	font-family: 'Jua', sans-serif;
+}
 
 
 #room{
@@ -101,4 +104,67 @@
 		width: 165px;
 		height: 60px;
 	}
+	
 
+#inventory{
+	position:absolute;
+	left:300px; top:50px;
+	font-size: 30px;
+	color: #eb9f8a;
+}
+	#inventory img:hover{
+		opacity:0.7;
+	}
+	
+	
+.modal{
+	display:none;
+	position:absolute;
+	left:0; right:0; top:0; bottom:0; margin:auto;
+	z-index:1;
+	width:800px; height:600px;
+	background-color:rgba(255,255,255,0.9);
+}
+.modal-content{
+	margin:auto;
+	border-collapse:collapse;
+	text-align:center;
+}
+	.modal-content h3{
+		color: #eb9f8a;
+	}
+	.modal-content h1{
+		color: silver;
+	}
+	.modal-content p{
+		font-size:16px;
+		color: gray;
+	}
+		#ref{
+			font-size: 12px;
+			color: silver;
+		}
+	.modal-content a{
+		background:: rgba(255,255,255,0);
+		border: 5px solid #eb9f8a;
+		border-radius: 30px;
+		display: inline-block;
+		cursor: pointer;
+		color: #eb9f8a;
+		font-size: 25px;
+		padding: 16px 50px;
+		text-decoration: none;
+	}
+		.modal-content a:hover{
+			background: rgba(255,159,138,0.2);
+		}
+		.modal-content a:active{
+			background: rgba(255,159,138,0.6);
+			color: white;
+		}
+
+		
+#thumb:hover{
+	transition:opacity .5s linear;
+	opacity:0;
+}
