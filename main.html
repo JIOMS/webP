@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/css/main.css" />
+    <title>코로나 살아남기</title>
+    <script>
+      function setStatus() {
+        const status_box = document.getElementById("status");
+
+        const virus_box = document.createElement("div");
+        virus_box.setAttribute("class", "status-item");
+        virus_box.setAttribute("id", "virus_box");
+        status_box.appendChild(virus_box);
+        const money_box = document.createElement("div");
+        money_box.setAttribute("class", "status-item");
+        money_box.setAttribute("id", "money_box");
+        status_box.appendChild(money_box);
+
+        const virus_icon = new Image();
+        virus_icon.src = "./src/images/virus.png";
+        virus_icon.setAttribute("id", "virus_icon");
+        virus_box.appendChild(virus_icon);
+
+        const virus_gauge = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "svg"
+        );
+        virus_gauge.setAttribute("id", "virus_gauge");
+        // virus_gauge.setAttribute("height", "50%");
+        const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        const gauge_bound = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "rect"
+        );
+        gauge_bound.setAttribute("id", "gauge_bound");
+        gauge_bound.setAttribute("x", "0");
+        gauge_bound.setAttribute("y", "0");
+        // gauge_bound.setAttribute("width", "100%");
+        gauge_bound.setAttribute("height", "100%");
+        const gauge_in = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "rect"
+        );
+        gauge_in.setAttribute("id", "gauge_in");
+        gauge_in.setAttribute("x", "0");
+        gauge_in.setAttribute("y", "0");
+        gauge_in.setAttribute("width", "100%");
+        gauge_in.setAttribute("height", "100%");
+        g.appendChild(gauge_in);
+        g.appendChild(gauge_bound);
+        virus_gauge.appendChild(g);
+        virus_box.appendChild(virus_gauge);
+
+        const money_icon = new Image();
+        money_icon.src = "src/images/money.png";
+        money_icon.setAttribute("id", "money_icon");
+        money_box.appendChild(money_icon);
+        const money_text = document.createElement("span");
+        money_text.innerText = "0";
+        money_text.setAttribute("id", "money");
+        money_box.appendChild(money_text);
+      }
+    </script>
+    <script>
+      function setOption() {
+        const option = document.getElementById("option");
+
+        const ul = document.createElement("ul");
+        const sound = document.createElement("li");
+        const sound_icon = new Image();
+        sound_icon.src = "./src/images/sound.png";
+        sound_icon.setAttribute("class", "option-icon");
+        sound_icon.setAttribute("id", "sound_icon");
+        sound.appendChild(sound_icon);
+        ul.appendChild(sound);
+
+        const back = document.createElement("li");
+        const back_icon = new Image();
+        back_icon.src = "./src/images/rotate.png";
+        back_icon.setAttribute("class", "option-icon");
+        back_icon.setAttribute("id", "back_icon");
+        back.appendChild(back_icon);
+        ul.appendChild(back);
+
+        option.appendChild(ul);
+      }
+    </script>
+  </head>
+  <body>
+    <nav id="nav">
+      <div id="location" class="nav-item">
+        <span class="loc-item" id="theme" style="display: block;"
+          >외출준비</span
+        >
+        <div>
+          <span class="loc-item">장소: </span>
+          <span class="loc-item" id="loc-now">집</span>
+        </div>
+      </div>
+      <div id="status" class="nav-item"></div>
+      <div id="option" class="nav-item"></div>
+    </nav>
+    <div id="container"></div>
+    <script>
+      setStatus();
+      setOption();
+    </script>
+  </body>
+</html>

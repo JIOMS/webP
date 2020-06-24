@@ -1,0 +1,94 @@
+body {
+  box-sizing: border-box;
+}
+body > * {
+  margin: 0;
+  min-width: 700px;
+}
+
+#nav {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  /* min-width: 1000px; */
+  height: 100px;
+}
+
+.nav-item {
+  height: 100%;
+}
+
+#location {
+  width: 15%;
+}
+
+.loc-item {
+  font-size: 25px;
+}
+
+#status {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+.status-item {
+  height: 50%;
+  display: flex;
+  align-items: center;
+}
+#virus_box {
+  flex-direction: row;
+}
+#money_box {
+  flex-direction: row-reverse;
+}
+#virus_icon {
+  height: 100%;
+}
+
+#virus_gauge {
+  height: 60%;
+  width: 100%;
+}
+
+#gauge_bound {
+  width: 100%;
+  height: 100%;
+  stroke: black;
+  stroke-width: 3px;
+  fill-opacity: 0;
+}
+#gauge_in {
+  stroke-opacity: 0;
+  stroke-width: 0;
+  height: 100%;
+  fill: green;
+}
+
+#money_icon {
+  height: 100%;
+}
+#money {
+  display: inline-block;
+  font-size: 40px;
+}
+
+#option {
+  width: 25%;
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-between;
+  height: 100%;
+  align-items: center;
+}
+li {
+  width: 50%;
+  height: inherit;
+}
+.option-icon {
+  width: 60%;
+}
