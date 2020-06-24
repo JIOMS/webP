@@ -5,7 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/css/main.css" />
     <title>코로나 살아남기</title>
+    <!-- 바이러스 게이지, 돈 관련 -->
     <script>
+      let MAX_GAUGE = 100;
+      var current_gauge = MAX_GAUGE;
+      var monney_amount = 0;
+
+      //바이러스 게이지 변화
+      function change_gauge(amount) {
+        const gauge_amount = document.getElementById("gauge_amount");
+        current_gauge += amount;
+        const ratio = (current_gauge / MAX_GAUGE) * 100;
+        gauge_amount.setAttribute("width", `${ratio}%`);
+        if (current_gauge < 30) {
+          gauge_amount.style.fill = "red";
+        }
+      }
+
+      //돈 변화
+      function change_money_amount(changed_amount) {
+        monney_amount += changed_amount;
+        document.getElementById("money").innerText = monney_amount;
+      }
+
       function setStatus() {
         const status_box = document.getElementById("status");
 
@@ -39,16 +61,16 @@
         gauge_bound.setAttribute("y", "0");
         // gauge_bound.setAttribute("width", "100%");
         gauge_bound.setAttribute("height", "100%");
-        const gauge_in = document.createElementNS(
+        const gauge_amount = document.createElementNS(
           "http://www.w3.org/2000/svg",
           "rect"
         );
-        gauge_in.setAttribute("id", "gauge_in");
-        gauge_in.setAttribute("x", "0");
-        gauge_in.setAttribute("y", "0");
-        gauge_in.setAttribute("width", "100%");
-        gauge_in.setAttribute("height", "100%");
-        g.appendChild(gauge_in);
+        gauge_amount.setAttribute("id", "gauge_amount");
+        gauge_amount.setAttribute("x", "0");
+        gauge_amount.setAttribute("y", "0");
+        gauge_amount.setAttribute("width", "100%");
+        gauge_amount.setAttribute("height", "100%");
+        g.appendChild(gauge_amount);
         g.appendChild(gauge_bound);
         virus_gauge.appendChild(g);
         virus_box.appendChild(virus_gauge);
@@ -58,12 +80,32 @@
         money_icon.setAttribute("id", "money_icon");
         money_box.appendChild(money_icon);
         const money_text = document.createElement("span");
-        money_text.innerText = "0";
+        money_text.innerText = monney_amount;
         money_text.setAttribute("id", "money");
         money_box.appendChild(money_text);
       }
     </script>
+    <!-- 옵션 창 관련 -->
     <script>
+      let sound_volume = true;
+
+      function change_volume() {
+        let sound = document.getElementById("sound_icon");
+        if (sound_volume == true) {
+          sound.src = "./src/images/mute.png";
+          sound_volume = false;
+        } else if (sound_volume == false) {
+          sound.src = "./src/images/sound.png";
+          sound_volume = true;
+        } else {
+          console.log("invalid thing");
+        }
+      }
+
+      function go_back() {
+        location = "#";
+      }
+
       function setOption() {
         const option = document.getElementById("option");
 
@@ -73,6 +115,8 @@
         sound_icon.src = "./src/images/sound.png";
         sound_icon.setAttribute("class", "option-icon");
         sound_icon.setAttribute("id", "sound_icon");
+        sound_icon.setAttribute("value", "on");
+        sound_icon.setAttribute("onclick", "change_volume();");
         sound.appendChild(sound_icon);
         ul.appendChild(sound);
 
@@ -81,6 +125,7 @@
         back_icon.src = "./src/images/rotate.png";
         back_icon.setAttribute("class", "option-icon");
         back_icon.setAttribute("id", "back_icon");
+        back_icon.setAttribute("onclick", "go_back();");
         back.appendChild(back_icon);
         ul.appendChild(back);
 
