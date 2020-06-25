@@ -1,0 +1,51 @@
+body{
+}
+
+h1{
+  text-align: center;
+}
+
+img{
+  width: 300px;
+}
+
+.selection{
+  display: flex;
+  margin-top: 200px;
+}
+
+.transportation{
+  width: 300px;
+  height: 300px;
+  border-radius: 150px;
+  background-color: lightgray;
+  float: left;
+
+}
+
+.bus{
+  position: relative;
+  left: 22%;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.walk{
+  margin-left: 300px;
+  position: relative;
+  left: 30%;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.bus-select{
+  transform: scale(0.7);
+  position: relative;
+  top: 70px;
+}
+
+.walk-select{
+  transform: scale(0.6);
+  position: relative;
+  top: 20px;
+}
