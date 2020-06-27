@@ -15,22 +15,26 @@
 			document.getElementById("page-wrap").style.filter = 'blur(2px)';
 		}
 		
-		/*
+		
 		var blinkInterval = setInterval(catBlink,1000);
-		function catBlink(){
-			var time = new Date();
-			var second = time.getSeconds();
-			if(second%6 == 0){
-				$(".cat_img").attr("src","res/img/cat_blink.png");
-			}else if(second%6 == 1){
-				$(".cat_img").attr("src","res/img/cat.png");
+		if(!isCatMoved || !isKF94Found){
+			function catBlink(){
+				var time = new Date();
+				var second = time.getSeconds();
+				if(second%6 == 0){
+					$(".cat_img").attr("src","res/img/cat_blink.png");
+				}else if(second%6 == 1){
+					$(".cat_img").attr("src","res/img/cat.png");
+				}
 			}
+			catBlink();
 		}
-		catBlink();
+		
+		
 		if(isCatMoved || isKF94Found){
 			clearInterval(blinkInterval);
 		}
-		*/
+		
 		
 		var plant_cnt = 0;
 		var upper_chest_cnt = 0;
@@ -42,9 +46,8 @@
 		var closet_cnt = 0;
 		var cat_cnt = 0;
 		
-		var money = (plant_cnt + upper_chest_cnt + lower_chest_cnt + trashbin_cnt + bag_cnt + flower_cnt + bed_cnt + closet_cnt + cat_cnt)*10;
+		var corona = 0;
 		
-		document.getElementById("money").innerHTML = "돈 : "+money;
 		
 		var isUpperChestOpen = false;
 		var isUpperChestClear = false;
@@ -155,11 +158,12 @@
 			if(trashbin_cnt == 0){
 				document.getElementById('moneySound').play();
 				openMoneyModal();
-				trashbin_cnt = 500;
-			}else if(trashbin_cnt > 510){
+				trashbin_cnt = trashbin_cnt + 50;
+			}else if(trashbin_cnt > 60){
 				document.getElementById('trashbinSound').play();
 				openDangerModal();
-			}else if (trashbin_cnt == 510){
+				corona = corona +5;
+			}else if (trashbin_cnt == 60){
 				document.getElementById('trashbinSound').play();
 				$(".trashbin_img").attr("src","res/img/trashbin_clicked.png");
 				trashbin_cnt = trashbin_cnt + 1;
@@ -195,6 +199,7 @@
 			}
 		}
 		function flower_click(){
+			
 			if(isFlowerBroken){
 				
 			} else if(flower_cnt >=10) {
@@ -264,7 +269,7 @@
 					document.getElementById('moneySound').play();
 					closet_cnt = closet_cnt +1;
 					$(".closet_img").attr("src","res/img/closet_open_clicked1.png");
-					closet_cnt = closet_cnt + 1000;
+					closet_cnt = closet_cnt + 100;
 					closet_open_clicked = true;
 					openMoneyModal();
 				} else {
@@ -434,6 +439,26 @@
 			document.getElementById("game_clear").style.display="block";
 			document.getElementById("page-wrap").style.filter = 'blur(2px)';
 		}
+		function openGameOverModal(){
+			document.getElementById("game_over").style.display="block";
+			document.getElementById("page-wrap").style.filter = 'blur(2px)';
+		}
+		
+		
+		
+		$(document).ready(function(){
+			$(document).click(function(){
+				var money = (plant_cnt+upper_chest_cnt+lower_chest_cnt+trashbin_cnt+bag_cnt+flower_cnt+bed_cnt+closet_cnt+cat_cnt)*100;
+				var virus = 10 + corona*5;
+				$("#money").text(money);
+				$("#virus_status").css("width",virus+"px");
+				if(corona == 100){
+					openGameOverModal();
+				}
+			});
+		});
+		
+		
 	</script>
 </head>
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
@@ -450,7 +475,7 @@
 	<audio src="res/audio/trashbin.wav" id="trashbinSound"></audio>
 	<audio src="res/audio/clear.mp3" id="clearSound"></audio>
 	
-	<p id="money">돈: 0</p>
+	
 	
 	<div id="page-wrap">
 		<div id="room" align="center">
@@ -500,17 +525,29 @@
 			</div>
 			
 			<div id="inventory">
-				찾을 물건들 : 
-				<img src="res/img/icon/kf_icon_notfound.png" class="kf94_icon" onclick="kf94_icon_click()">
-				<img src="res/img/icon/kf_icon_notfound.png" class="kf80_icon" onclick="kf80_icon_click()">
-				<img src="res/img/icon/dental_icon_notfound.png" class="dental_icon" onclick="dental_icon_click()">
-				<img src="res/img/icon/fabric_icon_notfound.png" class="fabric_icon" onclick="fabric_icon_click()">
-				<img src="res/img/icon/cleaner_icon_notfound.png" class="cleaner_icon" onclick="cleaner_icon_click()">
-				<br>
-				<img src="res/img/icon/key1_icon.png" class="key1_icon" style="display:none;" onclick="key1_icon_click()">
-				<img src="res/img/icon/key2_icon.png" class="key2_icon" style="display:none;" onclick="key2_icon_click()">
-				<img src="res/img/icon/catsnack_icon.png" class="catsnack_icon" style="display:none;" onclick="catsnack_icon_click()">
+					찾을 물건들 : 
+					<img src="res/img/icon/kf_icon_notfound.png" class="kf94_icon" onclick="kf94_icon_click()">
+					<img src="res/img/icon/kf_icon_notfound.png" class="kf80_icon" onclick="kf80_icon_click()">
+					<img src="res/img/icon/dental_icon_notfound.png" class="dental_icon" onclick="dental_icon_click()">
+					<img src="res/img/icon/fabric_icon_notfound.png" class="fabric_icon" onclick="fabric_icon_click()">
+					<img src="res/img/icon/cleaner_icon_notfound.png" class="cleaner_icon" onclick="cleaner_icon_click()">
+					<br>
+					<img src="res/img/icon/key1_icon.png" class="key1_icon" style="display:none;" onclick="key1_icon_click()">
+					<img src="res/img/icon/key2_icon.png" class="key2_icon" style="display:none;" onclick="key2_icon_click()">
+					<img src="res/img/icon/catsnack_icon.png" class="catsnack_icon" style="display:none;" onclick="catsnack_icon_click()">
 			</div>
+			
+			<div id="status">
+					<div id="virus_background"></div>
+					<div id="virus_status"></div>
+					<div id="virus_icon"><img src="res/img/variables/virus.png"></div>
+				
+				<div id="money_div">
+				   <p id="money">0</p>
+				</div>
+			</div>
+			
+			
 		</div>
 	</div>
 	
@@ -668,6 +705,17 @@
 			</div>
 			<p>이제 밖으로 나갈 준비가 끝났습니다!</p><br><br><br>
 			<a href ="#" onclick="closeModal()">다음 단계로</a>
+		</div>
+	</div>
+	
+	<div id="game_over" class="modal">
+		<span class="close cursor" onclick="closeModal()">&times;</span>
+		<div class="modal-content" align="center">
+			<h3>이럴수가!</h3>
+			<h1>게임 오버</h1>
+			<img src="res/img/danger.png">
+			<p>당신은 개인방역에 소홀하여 코로나19에 걸리게 되었습니다.</p>
+			<a href ="#" onclick="closeModal()">게임 오버 페이지로 링크</a>
 		</div>
 	</div>
 	
