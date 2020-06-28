@@ -73,8 +73,11 @@ body{
 }
 
 .top-right-menu{
-  float:right;
+  float: right;
   margin-right: 10px;
+  position: absolute;
+  top: 30px;
+  left: 1600px;
 }
 
 #icon-retry, #icon-sound-on{
@@ -132,13 +135,32 @@ animation-play-state: paused;
   position: absolute;
 }
 
+.intro-box{
+  border-radius: 80px;
+  width: 800px;
+  height: 300px;
+  top: 050px;
+  left: 450px;
+  background-color: skyblue;
+  float: left;
+  z-index: 5;
+  position: absolute;
+  display: block;
+  border: solid;
+  padding: 50px 50px 50px 50px;
+
+  transition-property: all;
+  transition-duration: 7s;
+
+  }
+
 .quiz-box-1, .quiz-box-2, .quiz-box-3{
   border-radius: 80px;
   width: 800px;
-  height: 500px;
+  height: 300px;
   top: 250px;
   left: 950px;
-  background-color: lightgray;
+  background-color: skyblue;
   float: left;
   z-index: 3;
   position: absolute;
@@ -146,3 +168,29 @@ animation-play-state: paused;
   border: solid;
   padding: 50px 50px 50px 50px;
   }
+
+.result-correct, .result-incorrect{
+  border-radius: 80px;
+  width: 400px;
+  height: 50px;
+  top: 300px;
+  left: 700px;
+  background-color: lightblue;
+  float: left;
+  z-index: 3;
+  position: absolute;
+  display: none;
+  padding: 50px 50px 50px 50px;
+}
+
+h3{
+  background-color: white;
+  text-align: center;
+  border-radius: 1  0px;
+}
+
+h1{
+  position: relative;
+  top: -20px;
+  text-align: center;
+}
